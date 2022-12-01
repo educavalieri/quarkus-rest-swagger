@@ -16,7 +16,7 @@ public class DefaultUserService implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User getUserById(long id) throws UserNotFoundException {
+    public User getUserById(Long id) throws UserNotFoundException {
         return userRepository.findByIdOptional(id).orElseThrow(() ->
                 new UserNotFoundException("this entity not exist"));
     }
@@ -29,7 +29,7 @@ public class DefaultUserService implements UserService {
     @Override
     @Transactional
     public User updateUser(long id, User user) throws UserNotFoundException {
-        User existingUser = getUserById(id);
+        var existingUser = getUserById(id);
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
         existingUser.setAge(user.getAge());

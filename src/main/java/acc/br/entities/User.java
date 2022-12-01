@@ -5,12 +5,16 @@ import io.quarkus.security.jpa.Password;
 import io.quarkus.security.jpa.Roles;
 import io.quarkus.security.jpa.UserDefinition;
 import io.quarkus.security.jpa.Username;
+import org.jboss.resteasy.spi.touri.MappedBy;
+
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -19,7 +23,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "username", nullable = false)
     @Username
@@ -48,6 +52,9 @@ public class User {
     @Min(1)
     @Max(200)
     private int age;
+
+    @OneToMany(mappedBy = "user")
+    private List<ContaCorrente> contas = new ArrayList<>();
 
     public long getId() {
         return id;

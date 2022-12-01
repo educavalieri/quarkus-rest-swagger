@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
 
-    User getUserById(long id) throws UserNotFoundException;
+    User getUserById(Long id) throws UserNotFoundException;
 
     List<User> getAllUsers();
 

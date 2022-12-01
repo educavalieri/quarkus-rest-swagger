@@ -57,7 +57,7 @@ public class UserController {
             @APIResponse(responseCode = "404", description="Usuario não encontrado",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionHandler.ErrorResponseBody.class)))
     })
-    public User getUser(@PathParam("id") int id) throws UserNotFoundException {
+    public User getUser(@PathParam("id") Long id) throws UserNotFoundException {
         return userService.getUserById(id);
     }
 
